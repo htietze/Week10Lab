@@ -1,0 +1,10 @@
+{
+    "development": {
+        "storage": "student.sqlite",
+        "dialect": "sqlite"
+    },
+    "production": {
+        "use_env_variable": "DATABSE_URL",
+        "dialect": "postgres"
+    }
+}
