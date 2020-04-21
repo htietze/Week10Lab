@@ -24,6 +24,7 @@ router.post('/students', function(req, res, next){
 })
 
 router.patch('/students/:id', function(req, res, next){
+    console.log("This is the api.js doing router patch")
     Student.update( req.body, { where: { id: req.params.id } })
         .then( rowsModified => {
             if (!rowsModified[0]) {

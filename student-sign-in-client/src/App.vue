@@ -45,6 +45,7 @@ export default {
       })
     },
     studentArrivedOrLeft(student) {
+      console.log("This is the App.vue working")
       this.$student_api.updateStudent(student).then( () => {
         this.message = student.present ? 'Welcome, ' : 'Goodbye, '
         this.name = student.name
@@ -58,6 +59,7 @@ export default {
 
     },
     updateStudents() {
+      console.log("This is the App.vue updating the students")
       this.$student_api.getAllStudents().then( students => {
         this.students = students
       })

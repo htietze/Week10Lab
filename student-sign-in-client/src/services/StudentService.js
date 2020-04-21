@@ -16,6 +16,7 @@ export default {
     },
 
     updateStudent(student) {
+        console.log("StudentService.js going off")
         return axios.patch(`${base_url}/${student.id}`, student).then(response => {
             return response.data
         })
