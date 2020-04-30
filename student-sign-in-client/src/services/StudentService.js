@@ -3,6 +3,9 @@ import axios from 'axios'
 const base_url = '/api/students'
 export default {
 
+    // Methods for the api to return data
+    // getting all students: axios goes through the URL and gets that data to return
+    // same uses of get, post, patch, and delete as the router
     getAllStudents() {
         return axios.get(base_url).then(response => {
             return response.data

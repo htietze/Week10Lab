@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     
+    <!-- the imported pieces being set to display in the template
+      when the student-added trigger is returned, it calls the method below -->
       <NewStudentForm v-on:student-added="newStudentAdded"></NewStudentForm>
+      <!-- binds the table to show students that are saved in the data method,
+      has calls for arriving students or deleted students -->
       <StudentTable
         v-bind:students="students"
         v-on:student-present="studentArrivedOrLeft"
@@ -13,6 +17,7 @@
 </template>
 
 <script>
+// Importing all the vue pieces to use for the template, the children components
 import NewStudentForm from './components/NewStudentForm.vue'
 import StudentTable from './components/StudentTable.vue'
 import StudentMessage from './components/StudentMessage.vue'
@@ -32,10 +37,14 @@ export default {
     StudentTable,
     StudentMessage
   },
+  // whenever the app is mounted (like at the beginning), it runs the update students
+  // method, so the database of students is pulled into the app on launch.
   mounted() {
     this.updateStudents()
   },
   methods: {
+    // adding a new student sends the student info to the api to add to the db
+    // then it updates the list with the database info, making the student show up
     newStudentAdded(student) {
       this.$student_api.addStudent(student).then( student => {
         this.updateStudents()
@@ -44,8 +53,10 @@ export default {
         alert('Error adding student. \n' + msg)
       })
     },
+    // when this method is called, the api is sent the student info, 
+    // and then the message info is set and will get sent to the 
+    // child component.
     studentArrivedOrLeft(student) {
-      console.log("This is the App.vue working")
       this.$student_api.updateStudent(student).then( () => {
         this.message = student.present ? 'Welcome, ' : 'Goodbye, '
         this.name = student.name
@@ -59,7 +70,6 @@ export default {
 
     },
     updateStudents() {
-      console.log("This is the App.vue updating the students")
       this.$student_api.getAllStudents().then( students => {
         this.students = students
       })

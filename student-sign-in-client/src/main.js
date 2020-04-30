@@ -1,3 +1,7 @@
+// I think all this is used to build the base for the vue app
+// it imports it, sets bootstrap to it, imports the API service to it
+// and prototypes it with that API service?
+// then renders the thing and mounts it to the app id.
 import Vue from 'vue'
 import App from './App.vue'
 import BootstrapVue from 'bootstrap-vue'

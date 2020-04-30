@@ -5,12 +5,15 @@ let Student = db.Student
 
 let router = express.Router()
 
+// router.get means it.. gets data from the database, following the route
+// and it looks for students using the URL addition, returning the promise in json
 router.get('/students', function(req, res, next){
-    Student.findAll( {order: ['name']} ).then( students => {
+    Student.findAll( {order: ['starID']} ).then( students => {
         return res.json(students)
     }).catch( err => next(err))
 })
 
+// post? posts a new student to the table I think, if the student exists, it's ok'd, otherwise, 400 error
 router.post('/students', function(req, res, next){
     Student.create(req.body).then( (data) => {
         return res.status(201).send('ok')
@@ -23,8 +26,8 @@ router.post('/students', function(req, res, next){
     })
 })
 
+// patch, so update? edits a student using the arguments provided. 
 router.patch('/students/:id', function(req, res, next){
-    console.log("This is the api.js doing router patch")
     Student.update( req.body, { where: { id: req.params.id } })
         .then( rowsModified => {
             if (!rowsModified[0]) {
@@ -43,6 +46,7 @@ router.patch('/students/:id', function(req, res, next){
         })
 })
 
+// straightforward, deletes a student that matches the arguments, parameters?
 router.delete('/students/:id', function(req, res, next){
     Student.destroy({where: {id: req.params.id}})
         .then( rowsModified => {

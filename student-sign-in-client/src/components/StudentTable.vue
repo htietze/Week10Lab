@@ -47,7 +47,6 @@
         },
         methods: {
             studentArrivedOrLeft(student) {
-                console.log("this is the student table trying")
                 this.$emit('student-present', student)
             },
             studentDeleted(student) {

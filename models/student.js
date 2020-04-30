@@ -1,5 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
 
+    // All of the needed information to define a Students table, 
+    // columns and requirements.
     let Student = sequelize.define('Student', {
         name: {
             type: DataTypes.STRING,
@@ -15,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     })
 
+    // set to false so the table isn't rerun if it already exists
     Student.sync({force: false}).then( () => {
         console.log('synced student table')
     })
